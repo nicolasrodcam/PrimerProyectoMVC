@@ -23,6 +23,27 @@ namespace Model
 
         public virtual Curso Curso { get; set; }
 
+        public List<AlumnoCurso> Listar(int Aumno_Id)
+        {
+            var alumnocursos = new List<AlumnoCurso>();
+            try
+            {
+                using (var ctx = new TextContext())
+                {
+                    alumnocursos = ctx.AlumnoCurso
+                        .Include("Curso")
+                        .Where(x => x.Aumno_Id == Aumno_Id)
+                        .ToList();
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            return alumnocursos;
+        }
+
         public ResponseModel Guardar()
         {
             var rm = new ResponseModel();
