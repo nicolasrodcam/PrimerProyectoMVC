@@ -1,0 +1,10 @@
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\bin\Debug\Model.dll
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\bin\Debug\Model.pdb
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\bin\Debug\EntityFramework.dll
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\bin\Debug\EntityFramework.xml
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\obj\Debug\Model.dll
+C:\Users\g.rodriguez\Desktop\Proyecto\PrimerProyectoMVC\Model\obj\Debug\Model.pdb

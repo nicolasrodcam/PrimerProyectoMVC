@@ -1,0 +1,39 @@
+﻿@model Model.Alumno
+@{
+    ViewBag.Title = (Model.Id > 0 ? Model.Nombre + " " + Model.Apellido : "Nuevo registro");
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item "><a href="~/">Alumnos</a></li>
+    <li class="breadcrumb-item active">@(Model.Id > 0 ? Model.Nombre + " " + Model.Apellido : "Nuevo registro")</li>
+</ol>
+
+@using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { id = "frm-alumno" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="card">
+        <div class="card-header">Informacion Personal</div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Nombre)
+                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Apellido)
+                @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.sexo)
+                <select name="sexo" class="form-control">
+                    <option @(Model.sexo == 1 ? "selected" : "") value="1">Hombre</option>
+                    <option @(Model.sexo == 2 ? "selected" : "") value="2">Mujer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Fecha_Nacimiento)
+                @Html.TextBoxFor(x => x.Fecha_Nacimiento, new { @class = "form-control" })
+            </div>
+        </div>
+
+    </div>
+}
