@@ -17,6 +17,8 @@ namespace Model
 
         public int? Curso_Id { get; set; }
 
+        [Required(ErrorMessage ="Debe Ingresar una nota para el Alumno")]
+        [Range(40,100)]
         public int? Nota { get; set; }
 
         public virtual Alumno Alumno { get; set; }
