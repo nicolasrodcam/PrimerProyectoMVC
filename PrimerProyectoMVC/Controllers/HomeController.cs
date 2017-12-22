@@ -31,6 +31,14 @@ namespace PrimerProyectoMVC.Controllers
             alumno_curso.Aumno_Id = Alumno_id;
             return PartialView(alumno_curso);
         }
+        //home/ver/?Alumno_id=1
+        public PartialViewResult Adjuntos(int Alumno_id)
+        {
+            ViewBag.CursosElegidos = alumno_curso.Listar(Alumno_id);
+            ViewBag.Cursos = curso.Todos(Alumno_id);
+            alumno_curso.Aumno_Id = Alumno_id;
+            return PartialView(alumno_curso);
+        }
 
         public JsonResult GuardarCurso(AlumnoCurso model)
         {

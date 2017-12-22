@@ -9,66 +9,68 @@
 </ol>
 
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#informacion">Informacion</a></li>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#informacion">Informacion</a></li>
 
-            @if (Model.Id > 0)
+    @if (Model.Id > 0)
             {
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#curso">Cursos</a></li>
-            }
-        </ul>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#curso">Cursos</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#adjunto">Adjunto</a></li>
+    }
+</ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div id="informacion" class="container tab-pane active">
+<!-- Tab panes -->
+<div class="tab-content">
+    <div id="informacion" class="container tab-pane active">
 
-                @using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { id = "frm-alumno" }))
+        @using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { id = "frm-alumno" }))
             {
-                    @Html.HiddenFor(x => x.Id)
-                    <div class="card">
-                        <div class="card-header">Informacion Personal</div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Nombre)
-                                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "label label-danger" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Apellido)
-                                @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "label label-danger" })
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.sexo)
-                                <select name="sexo" class="form-control">
-                                    <option @(Model.sexo == 1 ? "selected" : "") value="1">Hombre</option>
-                                    <option @(Model.sexo == 2 ? "selected" : "") value="2">Mujer</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.Fecha_Nacimiento)
-                                @Html.TextBoxFor(x => x.Fecha_Nacimiento, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Fecha_Nacimiento, null, new { @class = "label label-danger" })
-                            </div>
-                        </div>
+            @Html.HiddenFor(x => x.Id)
+            <div class="card">
+                <div class="card-header">Informacion Personal</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Nombre)
+                        @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "label label-danger" })
                     </div>
-
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary" data-ajax="true" data-confirm="Esta seguro de guardar este regustro?">Guardar</button>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Apellido)
+                        @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "label label-danger" })
                     </div>
-                }
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.sexo)
+                        <select name="sexo" class="form-control">
+                            <option @(Model.sexo == 1 ? "selected" : "") value="1">Hombre</option>
+                            <option @(Model.sexo == 2 ? "selected" : "") value="2">Mujer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Fecha_Nacimiento)
+                        @Html.TextBoxFor(x => x.Fecha_Nacimiento, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Fecha_Nacimiento, null, new { @class = "label label-danger" })
+                    </div>
+                </div>
             </div>
 
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary" data-ajax="true" data-confirm="Esta seguro de guardar este regustro?">Guardar</button>
+            </div>
+        }
+    </div>
 
-            @if (Model.Id > 0)
-            {
-                <div id="curso" class="container tab-pane fade">
 
-                </div>
-            }
+    @if (Model.Id > 0)
+    {
+        <div id="curso" class="container tab-pane fade"></div>
+        <div id="adjuntos" class="container tab-pane fade">
 
         </div>
+    }
+
+</div>
 
 
 
@@ -77,12 +79,17 @@
         @if (Model.Id > 0)
         {
             <Text>
-                CargarCursos();
+        CargarCursos();
+        CargarAdjuntos();
             </Text>
         }
     })
     function CargarCursos() {
         $('#curso').load('@Url.Content("~/home/cursos/?Alumno_id="+ Model.Id)');
+
+    }
+    function CargarAdjuntos() {
+      $('#adjuntos').load('@Url.Content("~/home/adjuntos/?Alumno_id=" + Model.Id)');
 
     }
 

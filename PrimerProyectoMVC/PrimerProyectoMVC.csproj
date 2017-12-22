@@ -161,6 +161,7 @@
     <Content Include="Views\Home\Guardar.cshtml" />
     <Content Include="Views\Home\Crud.cshtml" />
     <Content Include="Views\Home\Cursos.cshtml" />
+    <Content Include="Views\Home\Adjuntos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

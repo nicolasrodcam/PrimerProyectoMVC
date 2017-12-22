@@ -64,5 +64,20 @@ namespace Model
             }
             return rm;
         }
+        public void Eliminar()
+        {
+            try
+            {
+                using (var ctx = new TextContext())
+                {
+                    ctx.Entry(this).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
     }
 }
