@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using System.IO;
 
 namespace PrimerProyectoMVC.Controllers
 {
     public class HomeController : Controller
     {
         private Alumno alumno = new Alumno();
-        private AlumnoCurso alumno_curso= new AlumnoCurso();
+        private AlumnoCurso alumno_curso = new AlumnoCurso();
         private Curso curso = new Curso();
+        private Adjunto adjunto = new Adjunto();
         // GET: Home
         public ActionResult Index()
         {
@@ -34,10 +36,8 @@ namespace PrimerProyectoMVC.Controllers
         //home/ver/?Alumno_id=1
         public PartialViewResult Adjuntos(int Alumno_id)
         {
-            ViewBag.CursosElegidos = alumno_curso.Listar(Alumno_id);
-            ViewBag.Cursos = curso.Todos(Alumno_id);
-            alumno_curso.Aumno_Id = Alumno_id;
-            return PartialView(alumno_curso);
+            ViewBag.adjuntos = adjunto.Listar(Alumno_id);
+            return PartialView();
         }
 
         public JsonResult GuardarCurso(AlumnoCurso model)
@@ -50,10 +50,37 @@ namespace PrimerProyectoMVC.Controllers
                 if (rm.response)
                 {
                     rm.function = "CargarCursos();";
-                }              
+                }
             }
             return Json(rm);
-        
+
+        }
+
+        // GuardarAdjunto
+        public JsonResult GuardarAdjunto(Adjunto model, HttpPostedFileBase Archivo)
+        {
+            var rm = new ResponseModel();
+
+            if (Archivo != null)
+            {
+                //Nombre archivo
+                string archivo = DateTime.Now.ToString("yyyyMMddHHmmss") + Path.GetExtension(Archivo.FileName);
+
+                //Ruta donde se guardara
+                Archivo.SaveAs(Server.MapPath("~/uploads/" + archivo));
+
+                //establecemos en nuestro modelo el nombre del archivo
+                model.Archivo = archivo;
+
+                rm = model.Guardar();
+                if (rm.response)
+                {
+                    rm.function = "CargarAdjuntos();";
+                }
+            }
+            rm.SetResponse(false, "Deve Cargar un Archivo");
+            return Json(rm);
+
         }
 
         public ActionResult Crud(int id = 0)

@@ -16,7 +16,7 @@
     @if (Model.Id > 0)
             {
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#curso">Cursos</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#adjunto">Adjunto</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#adjuntos">Adjuntos</a></li>
     }
 </ul>
 
@@ -65,9 +65,7 @@
     @if (Model.Id > 0)
     {
         <div id="curso" class="container tab-pane fade"></div>
-        <div id="adjuntos" class="container tab-pane fade">
-
-        </div>
+        <div id="adjuntos" class="container tab-pane fade"></div>
     }
 
 </div>
@@ -89,7 +87,7 @@
 
     }
     function CargarAdjuntos() {
-      $('#adjuntos').load('@Url.Content("~/home/adjuntos/?Alumno_id=" + Model.Id)');
+        $('#adjuntos').load('@Url.Content("~/home/adjuntos/?Alumno_id=" + Model.Id)');
 
     }
 
