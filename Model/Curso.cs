@@ -6,6 +6,7 @@ namespace Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using System.Data.Entity.Spatial;
+    using System.Data.SqlClient;
     using System.Linq;
 
     [Table("Curso")]
@@ -32,7 +33,22 @@ namespace Model
             {
                 using (var ctx = new TextContext())
                 {
-                    cursos = ctx.Curso.ToList();
+                    if (Alumno_id > 0)
+                    {
+                        var cursos_tomados = ctx.AlumnoCurso.Where(x => x.Aumno_Id == Alumno_id)
+                            .Select(x => x.Curso_Id)
+                            .ToList();
+
+                        cursos = ctx.Curso.Where(x => !cursos_tomados.Contains(x.Id)).ToList();
+
+                    }
+                    else
+                    {
+                        cursos = ctx.Curso.ToList();
+                    }
+
+                    //forma Mas Sencilla
+                    //ctx.Database.SqlQuery<Curso>("SELECT c.* FROM Curso c WHERE Id MoT IN(SELECT Curso_Id FROM AlumnoCurso ac WHERE ac.Curso_Id = c.Id AND ac.Alumno_Id = @Alumno_Id ", new SqlParameter("Alumno_Id", Alumno_id)).ToList();
                 }
             }
             catch (Exception e)
