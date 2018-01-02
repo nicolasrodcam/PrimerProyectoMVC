@@ -17,8 +17,13 @@ namespace Model
 
         public int? Curso_Id { get; set; }
 
+<<<<<<< HEAD
         [Required(ErrorMessage ="Debe Ingresar una nota para el Alumno")]
         [Range(40,100)]
+=======
+        [Required(ErrorMessage = "Debe Ingresar una nota para el Alumno")]
+        [Range(40, 100)]
+>>>>>>> acef13a66ef3a539ea78ff95614f94660be087cd
         public int? Nota { get; set; }
 
         public virtual Alumno Alumno { get; set; }
