@@ -43,8 +43,10 @@
     @foreach (var c in CursosElegidos)
     {
         <li class="list-group-item">
-            @c.Curso.Nombre    <span class="badge badge-info">@c.Nota</span> <button type="submit" class=" float-right  btn btn-outline-primary btn-sm" data-ajax="true" data-confirm="Esta seguro de eliminar este regustro?">Eliminar</button>
-         
+            @c.Curso.Nombre    <span class="badge badge-info">@c.Nota</span> 
+            <button type="submit" value="~/home/eliminarAlumnoCurso/@c.Id" class=" float-right  btn btn-outline-primary btn-sm" data-ajax="true" data-confirm="Esta seguro de eliminar este regustro?">Delete</button>
+
+            <a data-confirm="Desea eliminar este Curso?" data-ajax="true" class="float-right  btn btn-outline-primary btn-sm" href="~/home/eliminarAlumnoCurso/@c.Id">Eliminar</a>
                </li>
     }
 

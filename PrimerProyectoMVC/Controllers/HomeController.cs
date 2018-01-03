@@ -117,5 +117,50 @@ namespace PrimerProyectoMVC.Controllers
             alumno.Eliminar();
             return Redirect("~/home/index");
         }
+        //public ActionResult EliminarAlumnoCurso(int id)
+        //{
+        //    alumno_curso.Id = id;
+        //    alumno_curso.Eliminar();
+        //    return Redirect("~/home");
+        //}
+
+        //[HttpPost]
+        public JsonResult EliminarAlumnoCurso1(int id)
+        {
+
+            var rm = new ResponseModel();
+            alumno_curso.Id = id;
+            //if (ModelState.IsValid)
+            //{
+            rm = alumno_curso.Eliminar(); // model.Guardar();
+
+            if (rm.response)
+            {
+                rm.function = "CargarCursos();";
+            }
+            //}
+            return Json(rm);
+            //return Json(rm, JsonRequestBehavior.AllowGet);
+            //(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+        
+        public JsonResult EliminarAlumnoCurso(AlumnoCurso model)
+        {
+            var rm = new ResponseModel();
+
+            //if (ModelState.IsValid)
+            //{
+                rm = model.Eliminar();
+                if (rm.response)
+                {
+                    rm.function = "CargarCursos();";
+                }
+            //}
+            return Json(rm, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

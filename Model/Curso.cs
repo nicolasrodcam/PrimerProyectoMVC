@@ -34,11 +34,7 @@ namespace Model
                 using (var ctx = new TextContext())
                 {
                     if (Alumno_id > 0)
-<<<<<<< HEAD
-                    {                    
-=======
                     {
->>>>>>> acef13a66ef3a539ea78ff95614f94660be087cd
                         var cursos_tomados = ctx.AlumnoCurso.Where(x => x.Aumno_Id == Alumno_id)
                             .Select(x => x.Curso_Id)
                             .ToList();
